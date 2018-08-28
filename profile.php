@@ -9,15 +9,17 @@ if($isLoggedIn != '1'){
 <!DOCTYPE html>
 <html>
 <head>
+  <title>Muncak Bareng</title>
   <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Muncak Bareng</title>
   <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css"> 
-  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/fixedcolumns/3.2.2/css/fixedColumns.bootstrap.min.css"> 
+  <link rel="stylesheet" href="DataTables/css/dataTables.bootstrap.min.css">
+  <link rel="stylesheet" href="DataTables/css/fixedColumns.bootstrap.min.css">
+  <script type="text/javascript" src="jQuery/jquery-3.2.1.js"></script>
+    <script type="text/javascript" src="DataTables/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="DataTables/js/dataTables.bootstrap.min.js"></script>
+    <script type="text/javascript" src="DataTables/js/dataTables.fixedColumns.min.js"></script>
   <link rel="stylesheet" type="text/css" href="bootstrap/css/sidebar.css">
 
 </head>
@@ -57,7 +59,7 @@ if($isLoggedIn != '1'){
   </div>
 </nav>
 
-  <div class="col-sm-9"><h2>Muncak Bareng</h2>
+  <div class="col-sm-9">
   <?php
   include 'koneksi.php';
   $id = $_SESSION['Id'];
@@ -85,6 +87,51 @@ if($isLoggedIn != '1'){
           </tr>
         </th>
       </table>
+      <table id="masterjadwal" class="table">
+  <thead>
+    <tr>
+      <th>No</th>
+      <th>Gunung Tujuan</th>
+      <th>Jalur</th>
+      <th>Tanggal Naik</th>
+      <th>Tanggal Turun</th>
+      <th>Meeting Point</th>
+      <th>CP</th>
+      <th>Telpon</th>
+      <th>Aksi</th>
+    </tr>
+ </thead>
+
+<br/>
+
+ <tbody>
+ <?php
+ include 'koneksi.php';
+ $email = $_SESSION['email'];
+ $data = mysqli_query($koneksi,"SELECT * FROM jadwal WHERE username='$email'")or die(mysql_error());
+ $no = 1;
+ while($hasil = mysqli_fetch_array($data)){
+  ?>
+  <tr>
+  <td><?php echo $no++; ?></td>
+  <td><?php echo $hasil['gn_tujuan']?></td>
+  <td><?php echo $hasil['naik_via']?></td>
+  <td><?php echo $hasil['tanggal_naik']; ?> </td>
+  <td><?php echo $hasil['tanggal_turun']; ?> </td>
+  <td><?php echo $hasil['mp']; ?> </td>
+  <td><?php echo $hasil['cp']; ?> </td>
+  <td><?php echo $hasil['telpon']; ?> </td>
+  
+  <td><a href="detail_post_profil.php?id=<?php echo $hasil['Id'];?> && email=<?php echo $hasil['username']; ?>" span class="glyphicon glyphicon-menu-hamburger">Detail</a></td>
+ </tr>
+  <?php } ?>
+  <script>
+                  $(document).ready(function() {
+                    $('#masterjadwal').DataTable();
+                  } );
+                  </script>
+  </tbody>
+  </table>
       <?php } ?>  
   </div>
 	</body>

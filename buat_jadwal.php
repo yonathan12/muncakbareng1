@@ -66,18 +66,18 @@ if($isLoggedIn != '1'){
 					<input type="text" class="form-control" name="gunung" placeholder="Ex Gunung Slamet" maxlength="50" required>
 					</div>
 				</div>
-        <!-- <div class="form-group">
+        <div class="form-group">
           <label for="cp" class="col-sm-2 control-label">CP</label>
           <div class="col-sm-4">
           <input type="text" disabled="" class="form-control" name="cp" value="<?php echo $_SESSION['nama']; ?>">
           </div>
-        </div> -->
-        <div class="form-group">
+        </div>
+     <!--    <div class="form-group">
           <label for="cp" class="col-sm-2 control-label">CP</label>
           <div class="col-sm-4">
           <input type="text" class="form-control" name="cp">
           </div>
-        </div>
+        </div> -->
         <div class="form-group">
           <label for="telpon" class="col-sm-2 control-label">Kontak</label>
           <div class="col-sm-3">

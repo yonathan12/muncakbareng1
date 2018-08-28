@@ -10,9 +10,6 @@ if($isLoggedIn != '1'){
 <html>
 <head>
   <title>Muncak Bareng</title>
-  <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
   <link rel="stylesheet" href="DataTables/css/dataTables.bootstrap.min.css">
   <link rel="stylesheet" href="DataTables/css/fixedColumns.bootstrap.min.css">
@@ -20,14 +17,13 @@ if($isLoggedIn != '1'){
     <script type="text/javascript" src="DataTables/js/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="DataTables/js/dataTables.bootstrap.min.js"></script>
     <script type="text/javascript" src="DataTables/js/dataTables.fixedColumns.min.js"></script>
-  <link rel="stylesheet" type="text/css" href="bootstrap/css/sidebar.css">
-
+<link rel="stylesheet" type="text/css" href="bootstrap/css/sidebar.css">
 </head>
 <body>
 <nav class="navbar navbar-inverse">
   <div class="container-fluid col-sm-4-fs">
     <div class="navbar-header">
-      <a class="navbar-brand" href="home">Muncak Bareng</a>
+      <a class="navbar-brand" href="index">Muncak Bareng</a>
     </div>
     
     <ul class="nav navbar-nav navbar-right">
@@ -58,55 +54,40 @@ if($isLoggedIn != '1'){
     </div>
   </div>
 </nav>
-
-<div class="col-sm-9">
-<a href="buat_jadwal" class="btn btn-primary">Buat Jadwal</a>
-<br/><br/>
-<div class="box-body">
-<table id="masterjadwal" class="table">
- 	<thead>
- 		<tr>
- 			<th>No</th>
- 			<th>Gunung Tujuan</th>
-      <th>Jalur</th>
- 			<th>Tanggal Naik</th>
- 			<th>Tanggal Turun</th>
- 			<th>Meeting Point</th>
-      <th>CP</th>
- 			<th>Telpon</th>
-      <th>Aksi</th>
- 		</tr>
- </thead>
- <tbody>
- <?php
- include 'koneksi.php';
- $data = mysqli_query($koneksi,"SELECT * FROM jadwal")or die(mysql_error());
- $no = 1;
- while($hasil = mysqli_fetch_array($data)){
- 	?>
- 	<tr>
- 	<td><?php echo $no++; ?></td>
- 	<td><?php echo $hasil['gn_tujuan']?></td>
-  <td><?php echo $hasil['naik_via']?></td>
- 	<td><?php echo $hasil['tanggal_naik']; ?> </td>
- 	<td><?php echo $hasil['tanggal_turun']; ?> </td>
- 	<td><?php echo $hasil['mp']; ?> </td>
-  <td><?php echo $hasil['cp']; ?> </td>
-  <td><?php echo $hasil['telpon']; ?> </td>
- 	
- 	<td><a href="detail.php?id=<?php echo $hasil['Id'];?>" span class="glyphicon glyphicon-menu-hamburger">Detail</a></td>
- </tr>
- 	<?php } ?>
- 	<script>
-                  $(document).ready(function() {
-                    $('#masterjadwal').DataTable();
-                  } );
-                  </script>
-  </tbody>
-	</table>
-	</div>
-	</div>
-	</div>
-	<div class="col-sm-1"></div>
-	</body>
-	</html>
+      <?php
+      include 'koneksi.php';
+      $email = $_SESSION['email'];
+      $id_post = $_GET['id'];
+      $sql = mysqli_query($koneksi,"SELECT * FROM jadwal WHERE username='$email' AND Id='$id_post'");
+      $no = 1;
+      while ($detail = mysqli_fetch_array($sql)){
+      ?>
+      <div class="col-sm-5">
+        <table class="table">
+          <h2>Detail Muncak Bareng</h2>
+          <tr><td>Nama CP : <?php echo $detail['cp']; ?> </td></tr>
+          <tr><td>Telpon / WA / BBM / Line : <?php echo $detail['telpon']; ?></td>
+          <tr><td>Nama Gunung : <?php echo $detail['gn_tujuan']; ?> </td></tr>
+          <tr><td>Naik Jalur : <?php echo $detail['naik_via']; ?> </td></tr>
+          <tr><td>Tanggal Naik : <?php echo $detail['tanggal_naik']; ?></td></tr>
+          <tr><td>Turun Jalur : <?php echo $detail['turun_via']; ?></td></tr>
+          <tr><td>Tanggal Turun : <?php echo $detail['tanggal_turun']; ?></tr>
+          <tr><td>Meeting Point : <?php echo $detail['mp']; ?></td></tr>
+          <tr><td>Jam Kumpul :  <?php echo $detail['jam_mp']; ?></td></tr>
+          <tr><td>Keterangan : <?php echo $detail['keterangan'];?></td></tr>
+          <tr>
+            <td>
+              <form method="post" action="update_komentar">
+                <div class="form-group">
+                  <textarea class="form-control" placeholder="Berikan Komentar ?"></textarea>
+                </div>
+                <button type="submit" class="btn btn-success">Kirim</button>
+                <a href="profile" class="btn btn-danger">Kembali</a>
+              </form>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <?php } ?>
+    </body>
+    </html>

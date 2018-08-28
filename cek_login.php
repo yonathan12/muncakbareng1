@@ -14,6 +14,7 @@ $ip       = $_SERVER['REMOTE_ADDR'];
             $_SESSION ['isLoggedIn']=1;
             $_SESSION['nama'] = $cek['nama'];
             $_SESSION['Id'] = $cek['Id'];
+            $_SESSION['email'] = $email;
             header("location:home");
     } else {
         ?>
