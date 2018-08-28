@@ -77,9 +77,9 @@ if($isLoggedIn != '1'){
  <tbody>
  <?php
  include 'koneksi.php';
- $data = mysql_query("SELECT * FROM jadwal")or die(mysql_error());
+ $data = mysqli_query($koneksi,"SELECT * FROM jadwal")or die(mysql_error());
  $no = 1;
- while($hasil = mysql_fetch_array($data)){
+ while($hasil = mysqli_fetch_array($data)){
  	?>
  	<tr>
  	<td><?php echo $no++; ?></td>
