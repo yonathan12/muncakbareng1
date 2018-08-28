@@ -56,9 +56,9 @@ if($isLoggedIn != '1'){
 </nav>
       <?php
       include 'koneksi.php';
-      $sql = mysql_query("SELECT * FROM jadwal WHERE Id=".$_GET['id']) or die(mysql_error());
+      $sql = mysqli_query($koneksi,"SELECT * FROM jadwal WHERE Id=".$_GET['id']);
       $no = 1;
-      while ($detail = mysql_fetch_array($sql)){
+      while ($detail = mysqli_fetch_array($sql)){
       ?>
       <div class="col-sm-5">
         <table class="table">
