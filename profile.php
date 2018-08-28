@@ -96,7 +96,6 @@ if($isLoggedIn != '1'){
       <th>Tanggal Naik</th>
       <th>Tanggal Turun</th>
       <th>Meeting Point</th>
-      <th>CP</th>
       <th>Telpon</th>
       <th>Aksi</th>
     </tr>
@@ -108,7 +107,7 @@ if($isLoggedIn != '1'){
  <?php
  include 'koneksi.php';
  $email = $_SESSION['email'];
- $data = mysqli_query($koneksi,"SELECT * FROM jadwal WHERE username='$email'")or die(mysql_error());
+ $data = mysqli_query($koneksi,"SELECT * FROM jadwal WHERE username='$email' ORDER BY tanggal_naik ASC")or die(mysql_error());
  $no = 1;
  while($hasil = mysqli_fetch_array($data)){
   ?>
@@ -119,7 +118,6 @@ if($isLoggedIn != '1'){
   <td><?php echo $hasil['tanggal_naik']; ?> </td>
   <td><?php echo $hasil['tanggal_turun']; ?> </td>
   <td><?php echo $hasil['mp']; ?> </td>
-  <td><?php echo $hasil['cp']; ?> </td>
   <td><?php echo $hasil['telpon']; ?> </td>
   
   <td><a href="detail_post_profil.php?id=<?php echo $hasil['Id'];?> && email=<?php echo $hasil['username']; ?>" span class="glyphicon glyphicon-menu-hamburger">Detail</a></td>

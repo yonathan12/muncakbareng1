@@ -80,7 +80,7 @@ if($isLoggedIn != '1'){
  <tbody>
  <?php
  include 'koneksi.php';
- $data = mysqli_query($koneksi,"SELECT * FROM jadwal")or die(mysql_error());
+ $data = mysqli_query($koneksi,"SELECT * FROM jadwal ORDER BY tanggal_naik ASC")or die(mysql_error());
  $no = 1;
  while($hasil = mysqli_fetch_array($data)){
  	?>

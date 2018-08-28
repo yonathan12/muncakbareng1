@@ -18,7 +18,7 @@ $jam_mp = $_POST['jam_mp'];
 $cp = $_SESSION['nama'];
 $telpon = $_POST['telpon'];
 $keterangan = $_POST['keterangan'];
-$tanggal = date("Y-m-d H:i:s");
+$tanggal = date("d-m-Y H:i:s");
 $ip = $_SERVER['REMOTE_ADDR'];
 $username = $_SESSION['email'];
 
