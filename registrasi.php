@@ -1,10 +1,53 @@
-<?php include 'header.php'; ?>
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Muncak Bareng</title>
+		<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+		<script src="jQuery/jquery-3.2.1.min.js"></script>
+		<script src="bootstrap/js/bootstrap.min.js"></script>
+		<script type="text/javascript" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+		<style>
+		body {
+			padding-top: 70px;
+		}
+		</style>
+	</head>
+	<body>
+		<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+			<div class="container">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-2">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					 <a href="index" class="navbar-brand page-scroll">Muncak Bareng</a>
+				</div>
+				<div class="collapse navbar-collapse" id="navbar-collapse-2">
+					<ul class="nav navbar-nav">
+					<li><a href="index" class="active page-scroll">Home</a></li>				
+                    <li><a href="index#gallery" class="page-scroll">Gallery</a></li>
+                    <li><a href="index#about" class="page-scroll">About</a></li>
+                    <li><a href="login">Login</a></li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+	</body>
 
 	<div class="jumbotron content">
 	
-	
 	<div class="row">
-		<div class="col-md-10">
+		<div class="col-md-9">
 			<form class="form-horizontal" method="post" action="register_proses">
 			
 				
@@ -77,8 +120,8 @@
 				
 				<div class="form-group">
 				<div class="col-sm-offset-2 col-sm-10">
-					<button type="submit" class="btn btn-default">Daftar</button>
-					<button type="reset" class="btn btn-default">Batal</button>
+					<button type="submit" class="btn btn-success">Daftar</button>
+					<button type="reset" class="btn btn-danger">Batal</button>
 				</div>
 			</div>
 			</form>

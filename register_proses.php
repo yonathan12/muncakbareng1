@@ -1,5 +1,5 @@
 <?php
-include 'koneksi_ol.php';
+include 'koneksi.php';
 
 $nama = $_POST['nama'];
 $telpon = $_POST['telpon'];
@@ -11,17 +11,17 @@ $alamat = $_POST['alamat'];
 $jenis_kelamin = $_POST['jenis_kelamin'];
 $ip = $_SERVER['REMOTE_ADDR'];
 
-$cekemail = mysql_num_rows(mysql_query("SELECT * FROM user WHERE email='$_POST[email]'"));
+$cekemail = mysqli_num_rows(mysqli_query($koneksi,"SELECT * FROM user WHERE email='$_POST[email]'"));
 
 if($cekemail > 0){
 	echo '<script language="javascript">
 	alert("Email Sudah Terdaftar");
-	location.href="register";
+	location.href="registrasi";
 	</script>';
 	exit();
 }
 
-$query = mysql_query("INSERT INTO user (nama,telpon,email,password,tempat_lahir,tanggal_lahir,jenis_kelamin,alamat,ip,tanggal_registrasi) VALUES ('$nama','$telpon','$email','$password','$tempat_lahir','$tanggal_lahir','$alamat','$jenis_kelamin','$ip',NOW())") or die(mysql_error());
+$query = mysqli_query($koneksi,"INSERT INTO user VALUES ('','$nama','$telpon','$email','$password','$tempat_lahir','$tanggal_lahir','$alamat','$jenis_kelamin','$ip',NOW())") or die(mysql_error());
 
 if($query){
 	echo '<script language="javascript">
