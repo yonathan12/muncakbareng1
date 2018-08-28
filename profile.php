@@ -61,8 +61,8 @@ if($isLoggedIn != '1'){
   <?php
   include 'koneksi.php';
   $id = $_SESSION['Id'];
-  $sql = mysql_query("SELECT * FROM user WHERE Id='$id'");
-  while ($profile = mysql_fetch_array($sql)) {
+  $sql = mysqli_query($koneksi,"SELECT * FROM user WHERE Id='$id'");
+  while ($profile = mysqli_fetch_array($sql)) {
     
   ?>
   <table>
