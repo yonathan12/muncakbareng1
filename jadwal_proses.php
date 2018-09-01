@@ -8,15 +8,15 @@ if($isLoggedIn != '1'){
 }
 
 $gn_tujuan = $_POST['gunung'];
-$naik_via = $_POST['naik_via'];
-$turun_via = $_POST['turun_via'];
-$tanggal_naik = $_POST['tanggal_naik'];
-$tanggal_turun = $_POST['tanggal_turun'];
-$mp = $_POST['mp'];
-$tanggal_mp = $_POST['tanggal_mp'];
-$jam_mp = $_POST['jam_mp'];
 $cp = $_SESSION['nama'];
 $telpon = $_POST['telpon'];
+$tanggal_naik = $_POST['tanggal_naik'];
+$naik_via = $_POST['naik_via'];
+$tanggal_turun = $_POST['tanggal_turun'];
+$turun_via = $_POST['turun_via'];
+$tanggal_mp = $_POST['tanggal_mp'];
+$jam_mp = $_POST['jam_mp'];
+$mp = $_POST['mp'];
 $keterangan = $_POST['keterangan'];
 $tanggal = date("d-m-Y H:i:s");
 $ip = $_SERVER['REMOTE_ADDR'];

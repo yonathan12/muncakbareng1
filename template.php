@@ -36,8 +36,8 @@ if($isLoggedIn != '1'){
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <li ><a href="home">Home</a></li>
-        <li class="active"><a href="profil">Profil</a></li>
-        <li ><a href="jadwal">Jadwal</a></li>
+        <li ><a href="profil">Profil</a></li>
+        <li class="active"><a href="jadwal">Jadwal</a></li>
         
         <!-- <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
@@ -58,33 +58,7 @@ if($isLoggedIn != '1'){
   </div>
 	</nav>
   <div class="container">
-    <?php
-      include 'koneksi.php';
-      $email = $_GET['email'];
-      $id_post = $_GET['id'];
-      $sql = mysqli_query($koneksi,"SELECT * FROM jadwal WHERE username='$email' AND Id='$id_post'");
-      $no = 1;
-      while ($detail = mysqli_fetch_array($sql)){
-      ?>
-
-      <p>Nama CP <?php echo $detail['cp']; ?></p>
-      <p>Telpon / WA / BBM / Line <?php echo $detail['telpon']; ?></p>
-      <p>Gunung Tujuan <?php echo $detail['gn_tujuan']; ?></p>
-      <p>Tanggal Naik <?php echo $detail['tanggal_naik']; ?></p>
-      <p>Naik Jalur <?php echo $detail['naik_via']; ?></p>
-      <p>Tanggal Turun <?php echo $detail['tanggal_turun']; ?></p>
-      <p>Turun Jalur <?php echo $detail['turun_via']; ?></p>
-      <p>Meeting Point <?php echo $detail['mp']; ?></p>
-      <p>Jam Kumpul <?php echo $detail['jam_mp']; ?></p>
-      <p>Keterangan <?php echo $detail['keterangan'];?></p>
-      <?php } ?>
-              <form method="post" action="update_komentar">
-                <div class="form-group">
-                  <textarea class="form-control" placeholder="Berikan Komentar ?"></textarea>
-                </div>
-                <button type="submit" class="btn btn-success">Kirim</button>
-                <a href="profil" class="btn btn-danger">Kembali</a>
-              </form>
+    
   </div>
 </body>
 </html>

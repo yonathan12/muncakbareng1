@@ -16,7 +16,7 @@ $query = mysqli_query($koneksi, "DELETE from jadwal WHERE id='$id' AND username=
 if ($query) {
 	echo '<script language="javascript">
 	alert ("Data berhasil di hapus");
-	location.href="profile";
+	location.href="profil";
 	</script>';
 	exit();
 } else {

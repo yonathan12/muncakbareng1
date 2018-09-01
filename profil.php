@@ -37,8 +37,7 @@ if($isLoggedIn != '1'){
       <ul class="nav navbar-nav">
         <li ><a href="home">Home</a></li>
         <li class="active"><a href="profil">Profil</a></li>
-        <li ><a href="jadwal">Jadwal</a></li>
-        
+        <li><a href="jadwal">Jadwal</a></li>
         <!-- <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
           <ul class="dropdown-menu">
@@ -57,34 +56,62 @@ if($isLoggedIn != '1'){
       </ul>
   </div>
 	</nav>
+
   <div class="container">
     <?php
-      include 'koneksi.php';
-      $email = $_GET['email'];
-      $id_post = $_GET['id'];
-      $sql = mysqli_query($koneksi,"SELECT * FROM jadwal WHERE username='$email' AND Id='$id_post'");
-      $no = 1;
-      while ($detail = mysqli_fetch_array($sql)){
-      ?>
-
-      <p>Nama CP <?php echo $detail['cp']; ?></p>
-      <p>Telpon / WA / BBM / Line <?php echo $detail['telpon']; ?></p>
-      <p>Gunung Tujuan <?php echo $detail['gn_tujuan']; ?></p>
-      <p>Tanggal Naik <?php echo $detail['tanggal_naik']; ?></p>
-      <p>Naik Jalur <?php echo $detail['naik_via']; ?></p>
-      <p>Tanggal Turun <?php echo $detail['tanggal_turun']; ?></p>
-      <p>Turun Jalur <?php echo $detail['turun_via']; ?></p>
-      <p>Meeting Point <?php echo $detail['mp']; ?></p>
-      <p>Jam Kumpul <?php echo $detail['jam_mp']; ?></p>
-      <p>Keterangan <?php echo $detail['keterangan'];?></p>
-      <?php } ?>
-              <form method="post" action="update_komentar">
-                <div class="form-group">
-                  <textarea class="form-control" placeholder="Berikan Komentar ?"></textarea>
-                </div>
-                <button type="submit" class="btn btn-success">Kirim</button>
-                <a href="profil" class="btn btn-danger">Kembali</a>
-              </form>
+    include 'koneksi.php';
+    $id = $_SESSION['Id'];
+    $sql = mysqli_query($koneksi,"SELECT * FROM user WHERE Id='$id'");
+    while ($profile = mysqli_fetch_array($sql)) {
+      
+    ?>
+    <p>Nama : <?php echo $profile['nama'];?></p>
+    <p>Telpon :<?php echo $profile['telpon'];?></p>
+    <p>Email : <?php echo $profile['email'];?></p>
+    <div class="table-responsive"> 
+      <table id="jadwal" class="table">
+          <thead>
+            <tr>
+            <th>No</th>
+            <th>Gunung Tujuan</th>
+            <th>Jalur</th>
+            <th>Tanggal Naik</th>
+            <th>Tanggal Turun</th>
+            <th>Meeting Point</th>
+            <th>Telpon</th>
+            <th>Aksi</th>
+            </tr>
+          </thead>
+          <tbody>
+            <?php
+               include 'koneksi.php';
+               $email = $_SESSION['email'];
+               $data = mysqli_query($koneksi,"SELECT * FROM jadwal WHERE username='$email' ORDER BY tanggal_naik ASC")or die(mysql_error());
+               $no = 1;
+               while($hasil = mysqli_fetch_array($data)){
+                ?>
+                <tr>
+                <td><?php echo $no++; ?></td>
+                <td><?php echo $hasil['gn_tujuan']?></td>
+                <td><?php echo $hasil['naik_via']?></td>
+                <td><?php echo $hasil['tanggal_naik']; ?> </td>
+                <td><?php echo $hasil['tanggal_turun']; ?> </td>
+                <td><?php echo $hasil['mp']; ?> </td>
+                <td><?php echo $hasil['telpon']; ?> </td>
+                
+                <td><a href="detail_post_profil.php?id=<?php echo $hasil['Id'];?> && email=<?php echo $hasil['username']; ?>" span class="glyphicon glyphicon-menu-hamburger"></a>
+                  <a href="hapus_post.php?id=<?php echo $hasil['Id'];?> && email=<?php echo $hasil['username']; ?>" span class="glyphicon glyphicon-trash"></a></td>
+               </tr>
+            <?php } ?>
+            <script>
+               $(document).ready(function() {
+               $('#jadwal').DataTable();
+               } );
+            </script>
+          </tbody>
+      </table>
+       <?php } ?>  
+    </div>
   </div>
 </body>
 </html>
