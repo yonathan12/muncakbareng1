@@ -120,7 +120,8 @@ if($isLoggedIn != '1'){
   <td><?php echo $hasil['mp']; ?> </td>
   <td><?php echo $hasil['telpon']; ?> </td>
   
-  <td><a href="detail_post_profil.php?id=<?php echo $hasil['Id'];?> && email=<?php echo $hasil['username']; ?>" span class="glyphicon glyphicon-menu-hamburger">Detail</a></td>
+  <td><a href="detail_post_profil.php?id=<?php echo $hasil['Id'];?> && email=<?php echo $hasil['username']; ?>" span class="glyphicon glyphicon-menu-hamburger"></a>
+    <a href="hapus_post.php?id=<?php echo $hasil['Id'];?> && email=<?php echo $hasil['username']; ?>" span class="glyphicon glyphicon-trash"></a></td>
  </tr>
   <?php } ?>
   <script>
