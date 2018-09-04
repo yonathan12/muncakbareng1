@@ -90,7 +90,7 @@ if($isLoggedIn != '1'){
       <?php } ?>
               <form method="post" action="update_komentar?id=<?php echo $_GET['id']; ?>">
                 <div class="form-group">
-                  <textarea class="form-control" placeholder="Berikan Komentar ?" name="komentar"></textarea>
+                  <textarea class="form-control" placeholder="Berikan Komentar ?" name="komentar" required=""></textarea>
                 </div>
                 <button type="submit" class="btn btn-success">Kirim</button>
                 <a href="jadwal" class="btn btn-danger">Kembali</a>
