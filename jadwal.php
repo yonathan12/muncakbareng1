@@ -160,11 +160,16 @@ if($isLoggedIn != '1'){
             <div class="col-sm-6"> 
               <input type="text" class="form-control" name="turun_via" placeholder="" required="">
             </div>
+          </div><div class="form-group">
+            <label class="control-label col-sm-4" for="mp">Meeting Point</label>
+            <div class="col-sm-4"> 
+              <input type="text" class="form-control" name="mp" placeholder="" required="">
+            </div>
           </div>
           <div class="form-group">
             <label class="control-label col-sm-4" for="mp">Tanggal Kumpul di Meeting Point</label>
             <div class="col-sm-4"> 
-              <input type="text" class="form-control" name="mp" placeholder="" required="">
+              <input type="date" class="form-control" name="tanggal_mp" placeholder="" required="">
             </div>
           </div>
           <div class="form-group">

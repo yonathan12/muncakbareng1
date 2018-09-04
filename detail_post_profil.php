@@ -77,13 +77,26 @@ if($isLoggedIn != '1'){
       <p>Meeting Point <?php echo $detail['mp']; ?></p>
       <p>Jam Kumpul <?php echo $detail['jam_mp']; ?></p>
       <p>Keterangan <?php echo $detail['keterangan'];?></p>
+      <br/>
+      <p>Komentar</p>
       <?php } ?>
-              <form method="post" action="update_komentar">
+
+      <?php
+      include 'koneksi.php';
+      $sql = mysqli_query($koneksi,"SELECT * FROM komentar WHERE idJadwal=".$_GET['id']);
+      while ($detail = mysqli_fetch_array($sql)){
+      ?>
+      <table border="1">
+      <p><?php echo $detail['nama']; ?> <?php echo " : "; ?><?php echo $detail['komentar']; ?></p>  
+      </table>
+      
+      <?php } ?>
+              <form method="post" action="update_komentar?id=<?php echo $_GET['id']; ?>">
                 <div class="form-group">
-                  <textarea class="form-control" placeholder="Berikan Komentar ?"></textarea>
+                  <textarea class="form-control" placeholder="Berikan Komentar ?" name="komentar"></textarea>
                 </div>
                 <button type="submit" class="btn btn-success">Kirim</button>
-                <a href="profil" class="btn btn-danger">Kembali</a>
+                <a href="jadwal" class="btn btn-danger">Kembali</a>
               </form>
   </div>
 </body>

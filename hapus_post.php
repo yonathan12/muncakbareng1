@@ -12,6 +12,7 @@ $id = $_GET['id'];
 $username = $_GET['email'];
 
 $query = mysqli_query($koneksi, "DELETE from jadwal WHERE id='$id' AND username='$username'");
+$query1 = mysqli_query($koneksi, "DELETE FROM komentar WHERE idJadwal='$id");
 
 if ($query) {
 	echo '<script language="javascript">
@@ -22,7 +23,7 @@ if ($query) {
 } else {
 	echo '<script language="javascript">
 	alert ("Data gagal di hapus");
-	location.href="profile";
+	location.href="profil";
 	</script>';
 	exit();
 }
