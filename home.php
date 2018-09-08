@@ -58,5 +58,9 @@ if($isLoggedIn != '1'){
       echo "Selamat Datang ".$_SESSION['nama']."";
     ?>
   </div>
+  <br/>
+  <div class="container">
+    <h4>Info Seputar Pendakian</h4>
+  </div>
 </body>
 </html>
