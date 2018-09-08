@@ -82,8 +82,9 @@ if($isLoggedIn != '1'){
       <?php } ?>
 
       <?php
+      $status = 'TRUE';
       include 'koneksi.php';
-      $sql = mysqli_query($koneksi,"SELECT * FROM komentar WHERE idJadwal=".$_GET['id']);
+      $sql = mysqli_query($koneksi,"SELECT * FROM komentar WHERE status='$status' AND idJadwal=".$_GET['id']);
       while ($detail = mysqli_fetch_array($sql)){
       ?>
       <table border="1">
@@ -96,7 +97,7 @@ if($isLoggedIn != '1'){
                   <textarea class="form-control" placeholder="Berikan Komentar ?" name="komentar" required=""></textarea>
                 </div>
                 <button type="submit" class="btn btn-success">Kirim</button>
-                <a href="jadwal" class="btn btn-danger">Kembali</a>
+                <a href="profil" class="btn btn-danger">Kembali</a>
               </form>
   </div>
 </body>

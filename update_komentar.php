@@ -12,8 +12,9 @@ $nama = $_SESSION['nama'];
 $komentar = $_POST['komentar'];
 $id = $_GET['id'];
 $tanggal = date("d-m-Y H:i:s");
+$status = 'TRUE';
 
-$query = mysqli_query($koneksi,"INSERT INTO komentar VALUES('','$id','$nama','$komentar','$tanggal')");
+$query = mysqli_query($koneksi,"INSERT INTO komentar VALUES('','$id','$nama','$komentar','$tanggal','$status')");
 
 if ($query) {
 	header('location:detail.php?id='.$id);

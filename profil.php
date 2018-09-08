@@ -86,7 +86,8 @@ if($isLoggedIn != '1'){
             <?php
                include 'koneksi.php';
                $email = $_SESSION['email'];
-               $data = mysqli_query($koneksi,"SELECT * FROM jadwal WHERE username='$email' ORDER BY tanggal_naik ASC")or die(mysql_error());
+               $status = 'TRUE';
+               $data = mysqli_query($koneksi,"SELECT * FROM jadwal WHERE username='$email' AND status='$status' ORDER BY tanggal_naik ASC")or die(mysql_error());
                $no = 1;
                while($hasil = mysqli_fetch_array($data)){
                 ?>

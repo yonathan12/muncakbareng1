@@ -21,8 +21,9 @@ $keterangan = $_POST['keterangan'];
 $tanggal = date("d-m-Y H:i:s");
 $ip = $_SERVER['REMOTE_ADDR'];
 $username = $_SESSION['email'];
+$status = 'TRUE';
 
-$simpan = mysqli_query($koneksi, "INSERT INTO jadwal VALUES ('','$gn_tujuan','$naik_via','$turun_via','$tanggal_naik','$tanggal_turun','$mp','$tanggal_mp','$jam_mp','$cp','$telpon','$keterangan','$ip','$tanggal','$username')");
+$simpan = mysqli_query($koneksi, "INSERT INTO jadwal VALUES ('','$gn_tujuan','$naik_via','$turun_via','$tanggal_naik','$tanggal_turun','$mp','$tanggal_mp','$jam_mp','$cp','$telpon','$keterangan','$ip','$tanggal','$username','$status')");
 
 if($simpan){
 	echo '<script language="javascript">
@@ -33,7 +34,7 @@ if($simpan){
 }else{
 	echo '<script language="javascript">
 	alert ("Jadwal Gagal Disimpan");
-	location.href="buat_jadwal";
+	location.href="jadwal";
 	</script>';
 	exit();
 }

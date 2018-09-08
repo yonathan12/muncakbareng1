@@ -10,9 +10,10 @@ if($isLoggedIn != '1'){
 include 'koneksi.php';
 $id = $_GET['id'];
 $username = $_GET['email'];
+$status = 'FALSE';
 
-$query = mysqli_query($koneksi, "DELETE from jadwal WHERE id='$id' AND username='$username'");
-$query1 = mysqli_query($koneksi, "DELETE FROM komentar WHERE idJadwal='$id");
+$query = mysqli_query($koneksi, "UPDATE jadwal SET status='$status' WHERE id='$id' AND username='$username'");
+$query1 = mysqli_query($koneksi, "UPDATE komentar SET status='$status' WHERE idJadwal='$id'");
 
 if ($query) {
 	echo '<script language="javascript">
