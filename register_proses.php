@@ -11,7 +11,7 @@ $alamat = $_POST['alamat'];
 $jenis_kelamin = $_POST['jenis_kelamin'];
 $ip = $_SERVER['REMOTE_ADDR'];
 
-$cekemail = mysqli_num_rows(mysqli_query($koneksi,"SELECT * FROM user WHERE email='$_POST[email]'"));
+$cekemail = mysqli_num_rows(mysqli_query($koneksi,"SELECT * FROM user WHERE email='$email'"));
 
 if($cekemail > 0){
 	echo '<script language="javascript">
