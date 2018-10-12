@@ -61,6 +61,9 @@
                     <li>
                         <a class="page-scroll" href="#contact">Contact</a>
                     </li>
+                    <li>
+                       <a data-toggle="modal" data-target="#myModal">Login</a>
+                    </li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -80,7 +83,7 @@
     </header>
 
     
-
+   
     <section id="article">
         <div class="container">
             <div class="row">
@@ -88,13 +91,22 @@
                     <h2 class="section-heading">Article</h2>
                     <hr class="primary">
                     <div class="row">
-                        <div class="col-lg-4 col-md-6 text-center">
+                        <div class="col-lg-8 col-md-6 text-left">
                             <div class="service-box">
-                                <i class="fa fa-4x fa-map-signs text-primary sr-icons"></i>
-                                <a href=""><h3>Pendakian Gn Rinjani</h3></a>
-                                <p class="text-muted">Our templates are updated regularly so they don't break.</p>
+                                 <?php
+                                       require 'koneksi.php';
+                                       $status = 'Y';
+                                       $data = mysqli_query($koneksi,"SELECT * FROM artikel WHERE status='$status' ORDER BY tgl_buat ASC LIMIT 3")or die(mysql_error());
+                                       while($hasil = mysqli_fetch_array($data)){
+                                        ?>
+                                        
+                                       
+                                <!-- <i class="fa fa-4x fa-map-signs text-primary sr-icons"></i> -->
+                                <a href="" class="text-muted"><h3><?php echo $hasil['judul']; ?></h3></a>
+                                <!-- <p class="text-muted">Our templates are updated regularly so they don't break.</p> -->
+                                <?php } ?>
                             </div>
-                        </div>
+                        </div><!-- 
                         <div class="col-lg-4 col-md-6 text-center">
                             <div class="service-box">
                                 <i class="fa fa-4x fa fa-map-o text-primary sr-icons"></i>
@@ -108,7 +120,7 @@
                                 <h3>Pendakian Gn Merapi</h3>
                                 <p class="text-muted">We update dependencies to keep things fresh.</p>
                             </div>
-                        </div>
+                        </div> -->
                     </div>                    
                 </div>
             <br/>
@@ -124,7 +136,7 @@
                        $data = mysqli_query($koneksi,"SELECT * FROM jadwal WHERE status='$status' ORDER BY tanggal_naik ASC LIMIT 6")or die(mysql_error());
                        while($hasil = mysqli_fetch_array($data)){
                         ?>
-                        <p class="text-muted"><?php echo $hasil['gn_tujuan']?>, <?php echo $hasil['tanggal_naik']; ?></p>
+                        <p class="text-muted"><?php echo $hasil['gn_tujuan']?>, <?php echo date('d F Y', strtotime($hasil['tanggal_naik']));  ?></p>
                        <?php } ?>
                             </div>
                         </div>
@@ -272,6 +284,46 @@
             </div>
         </div>
     </section>
+
+     <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title text-center">MuncakBareng.com</h4>
+        </div>
+        <!-- Form awal -->
+        <form method="post" action="cek_login" class="form-signin" role="form">
+
+          <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                <input type="email" class="form-control" name="email" required oninvalid="this.setCustomValidity('Email tidak boleh kosong')"oninput="setCustomValidity('')" placeholder="Masukan Email" autofocus="">
+            </div>
+            <br>
+            <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                <input type="password" class="form-control" name="password" required="" maxlength="35" oninvalid="this.setCustomValidity('Maaf kolom tidak boleh kosong')"oninput="setCustomValidity('')" placeholder="Kata Sandi">
+            </div>
+              <br>
+            <div class="text-left">
+              <a href="registrasi"">Belum Punya Akun ?</a>
+            </div>
+              <br>
+            <tr>
+              <td>
+                <button class="btn btn-lg btn-primary btn-block btn-login" type="submit" value="login">Login</button>
+              </td>
+              <td><a href="index" class="btn btn-lg btn-primary btn-block btn-danger">Batal</a></td>
+            </tr>
+        </form>
+        <!-- Akhir Form -->
+      </div>
+        <!-- <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        </div> -->
+      </div>
 
     <!-- jQuery -->
     <script src="vendor/jquery/jquery.min.js"></script>
